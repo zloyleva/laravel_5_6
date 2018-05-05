@@ -24,7 +24,7 @@ All useful commands to work with docker listed in makefile
 ## Mysql
 
 - Port: 3306
-- Login: root
+- Login: user
 - Password: 123321
 - DB: forge
 
