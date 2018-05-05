@@ -1,4 +1,4 @@
-# Janado(Laravel 5.5/php 7.0.27)
+# Test Laravel project(Laravel 5.6/php 7.2.0)
 version 0.1.1
 
 ## Run app
