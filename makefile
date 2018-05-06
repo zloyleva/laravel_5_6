@@ -72,6 +72,12 @@ route: #show all routes
 conf: #refresh config cache
 	@sudo docker exec -it $(docker_name) bash -c 'php artisan config:cache'
 
+cron_status: #cron status
+	@sudo docker exec -it $(docker_name) bash -c 'service cron status'
+
+cron_task: #cron status
+	@sudo docker exec -it $(docker_name) bash -c 'crontab -e'
+
 test: #run test cases
 	@sudo docker exec -it $(docker_name) bash -c 'php artisan config:clear && vendor/bin/phpunit'
 

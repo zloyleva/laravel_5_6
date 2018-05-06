@@ -9,6 +9,9 @@ RUN apt-get update && \
 	apt-get install -y libpng-dev && \
     apt-get install -y git && \
     apt-get install -y cron && \
+    apt-get install -y mc && \
+    apt-get install -y vim && \
+    apt-get install -y nano && \
     apt-get install -y --no-install-recommends php7.2-mysql php7.2-sqlite3 php7.2-gd php-imagick php-memcached && \
     apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
