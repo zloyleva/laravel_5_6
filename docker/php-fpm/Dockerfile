@@ -19,7 +19,7 @@ COPY ./ /application
 
 RUN php composer.phar update && chmod -R 777 . && php composer.phar dump-autoload
 
-RUN (crontab -l ; echo "* * * * * /usr/local/bin/php /application/artisan schedule:run >>/dev/null 2>&1") | crontab
+RUN (crontab -l ; echo "* * * * * /usr/bin/php /application/artisan schedule:run >>/dev/null 2>&1") | crontab
 
 EXPOSE 9090
 
