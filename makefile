@@ -131,3 +131,6 @@ populate_vendors: #generate dock
 
 mix_watch: #run mix in watch
 	@sudo npm run watch && chmod -R 777 .
+
+clean_log:
+	@sudo cat /dev/null > storage/logs/laravel.log; sudo cat /dev/null > storage/logs/queue-worker.log
