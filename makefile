@@ -54,6 +54,9 @@ create_command: #create console command name=[emailName]
 create_queue_job: #create queue job name=[emailName]
 	@sudo docker exec -it $(docker_name) bash -c 'php artisan make:job $(name) && chmod -R 777 .'
 
+create_request: #create post request name=[request]
+	@sudo docker exec -it $(docker_name) bash -c 'php artisan make:request $(name) && chmod -R 777 .'
+
 migration: #run migration
 	@sudo docker exec -it $(docker_name) bash -c 'php composer.phar dump-autoload && php artisan migrate'
 

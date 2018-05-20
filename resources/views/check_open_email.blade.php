@@ -23,6 +23,25 @@
         </style>
     </head>
     <body>
-        Email
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        You were get letter
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="">Link #01. Click me</a></td>
+                </tr>
+                <tr>
+                    <td><a href="">Link #02. Click me</a></td>
+                </tr>
+                <tr>
+                    <td><img src="{{ route('open_letter') }}?openLetter={{ $openLetter }}" alt=""></td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>

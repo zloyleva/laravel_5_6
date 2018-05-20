@@ -11,14 +11,21 @@ class CheckOpenEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    protected $openLetter;
+    protected $openLinkOne;
+    protected $openLinkTwo;
+
     /**
-     * Create a new message instance.
-     *
-     * @return void
+     * CheckOpenEmail constructor.
+     * @param string $openLetter
+     * @param string $openLinkOne
+     * @param string $openLinkTwo
      */
-    public function __construct()
+    public function __construct(string $openLetter, string $openLinkOne, string $openLinkTwo)
     {
-        //
+        $this->openLetter = $openLetter;
+        $this->openLinkOne = $openLinkOne;
+        $this->openLinkTwo = $openLinkTwo;
     }
 
     /**
@@ -28,6 +35,10 @@ class CheckOpenEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('check_open_email');
+        return $this->view('check_open_email',[
+            'openLetter'=>$this->openLetter,
+            'openLinkOne'=>$this->openLinkOne,
+            'openLinkTwo'=>$this->openLinkTwo,
+        ]);
     }
 }
