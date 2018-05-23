@@ -18,5 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('articles', 'ArticlesController@index');
-Route::get('articles/{id}', 'ArticlesController@show')->where('id', '[0-9]+');
-Route::delete('articles/{id}', 'ArticlesController@delete')->where('id', '[0-9]+');
+Route::post('article', 'ArticlesController@store');
+Route::put('article', 'ArticlesController@store');
+Route::get('article/{id}', 'ArticlesController@show')->where('id', '[0-9]+');
+Route::delete('article/{id}', 'ArticlesController@delete')->where('id', '[0-9]+');
