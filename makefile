@@ -2,6 +2,7 @@ docker_name = lara_vue-php-fpm
 docker_webserver = lara_vue-webserver
 docker_mysql = lara_vue-mysql
 docker_image = backend_php-fpm
+docker_nodejs = lara_vue-nodejs
 
 help: #prints list of commands
 	@cat ./makefile | grep : | grep -v "grep"
@@ -102,6 +103,9 @@ connect_beanstalkd: #connect to container bash
 connect_mysql: #connect to container bash
 	@sudo docker exec -it $(docker_mysql) bash
 
+connect_nodejs: #connect to container bash
+	@sudo docker exec -it $(docker_nodejs) bash
+
 version: #laravel version
 	@sudo docker exec -it $(docker_name) bash -c 'php artisan --version'
 
@@ -130,7 +134,7 @@ populate_vendors: #generate dock
 	@sudo docker exec -it $(docker_name) bash -c 'cp -R ./vendor ./ven && chmod -R 777 .' && sudo sh -c 'rm -R ./vendor; mv ./ven ./vendor'
 
 mix_watch: #run mix in watch
-	@sudo npm run watch && chmod -R 777 .
+	@sudo docker exec -it $(docker_nodejs) bash -c  'npm run watch && chmod -R 777 .'
 
 clean_log:
 	@sudo cat /dev/null > storage/logs/laravel.log; sudo cat /dev/null > storage/logs/queue-worker.log
