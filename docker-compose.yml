@@ -1,6 +1,16 @@
 version: "3.1"
 services:
 
+    nodejs:
+      container_name: lara_vue-nodejs
+      build:
+        context: .
+        dockerfile: ./docker/nodejs/Dockerfile
+      volumes:
+       - .:/app
+      ports:
+       - '4200:4200'
+
     mailhog:
       image: mailhog/mailhog:latest
       container_name: lara_vue-mailhog
