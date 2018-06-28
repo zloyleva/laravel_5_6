@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Laravel + Vue.js + Router + Vuex + JWT
+
                 </div>
             </div>
         </div>
