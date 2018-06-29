@@ -5,6 +5,7 @@ Vue.use(VueRouter);
 
 import HomeComponent from './components/HomeComponent'
 import LoginComponent from './components/Auth/LoginComponent'
+import LogoutComponent from './components/Auth/LogoutComponent'
 
 const routes = [
     {
@@ -17,6 +18,11 @@ const routes = [
         name: 'login',
         component: LoginComponent
     },
+    {
+        path: '/logout',
+        name: 'logout',
+        component: LogoutComponent
+    }
 ];
 
 const router = new VueRouter({
