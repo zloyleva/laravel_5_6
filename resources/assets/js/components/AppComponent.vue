@@ -30,15 +30,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/logout"
-                                   onclick="event.preventDefault();
-    document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="/logout" method="POST"
-                                      style="display: none;">
-                                </form>
+                                <router-link class="nav-link dropdown-item" :to="{ name: 'logout' }">Logout</router-link>
                             </div>
                         </li>
 
@@ -72,7 +64,7 @@
         name: "AppComponent",
         data(){
           return {
-              // userName: ''
+
           }
         },
         computed:{
