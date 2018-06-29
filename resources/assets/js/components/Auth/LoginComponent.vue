@@ -1,6 +1,6 @@
 <template>
 
-    <div>
+    <div class="login-component">
 
         <div class="card-header">Login</div>
 

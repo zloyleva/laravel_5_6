@@ -6,22 +6,28 @@ Vue.use(VueRouter);
 import HomeComponent from './components/HomeComponent'
 import LoginComponent from './components/Auth/LoginComponent'
 import LogoutComponent from './components/Auth/LogoutComponent'
+import RegisterComponent from './components/Auth/RegisterComponent'
 
 const routes = [
     {
         path: '/',
         name: 'home',
-        component: HomeComponent
+        component: HomeComponent,
     },
     {
         path: '/login',
         name: 'login',
-        component: LoginComponent
+        component: LoginComponent,
     },
     {
         path: '/logout',
         name: 'logout',
         component: LogoutComponent
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: RegisterComponent,
     }
 ];
 

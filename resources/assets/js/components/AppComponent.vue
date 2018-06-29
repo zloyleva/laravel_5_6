@@ -21,7 +21,7 @@
                         <!-- Authentication Links -->
 
                         <li v-if="!$store.state.isLoggedIn"><router-link class="nav-link" :to="{ name: 'login' }">Login</router-link></li>
-                        <li v-if="!$store.state.isLoggedIn"><a class="nav-link" href="/register">Register</a></li>
+                        <li v-if="!$store.state.isLoggedIn"><router-link class="nav-link" :to="{ name: 'register' }">Register</router-link></li>
 
                         <li class="nav-item dropdown" v-if="$store.state.isLoggedIn">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\RegisterFormRequest;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -15,7 +18,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     /**
@@ -27,6 +30,39 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+
+        return $this->respondWithToken($token);
+    }
+
+    /**
+     * @param RegisterFormRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register(RegisterFormRequest $request, User $user)
+    {
+
+        if($user->where('email', $request['email'])->first()){
+            return response()->json([
+                'code' => 422,
+                'message' => 'Current user is exist'
+            ], 422);
+        }
+
+        $newUser = $user->create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
+
+        $credentials = [
+            'email' => $newUser->email,
+            'password' => $request['password'],
+        ];
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -81,6 +117,6 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'user' => Auth()->user()
-        ]);
+        ], 200);
     }
 }
