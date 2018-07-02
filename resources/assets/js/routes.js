@@ -31,8 +31,14 @@ const routes = [
     }
 ];
 
+// const router = new VueRouter({
+//    routes
+// });
+
 const router = new VueRouter({
-   routes
+    mode: 'history',
+    routes
 });
+router.mode = 'html5'
 
 export default router;
