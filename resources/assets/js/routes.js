@@ -7,6 +7,7 @@ import HomeComponent from './components/HomeComponent'
 import LoginComponent from './components/Auth/LoginComponent'
 import LogoutComponent from './components/Auth/LogoutComponent'
 import RegisterComponent from './components/Auth/RegisterComponent'
+import NotFoundComponent from './components/NotFoundComponent'
 
 const routes = [
     {
@@ -28,6 +29,14 @@ const routes = [
         path: '/register',
         name: 'register',
         component: RegisterComponent,
+    },
+    {
+        path: '/404',
+        name: '404',
+        component: NotFoundComponent,
+    }, {
+        path: '*',
+        redirect: '/404'
     }
 ];
 
@@ -39,6 +48,6 @@ const router = new VueRouter({
     mode: 'history',
     routes
 });
-router.mode = 'html5'
+// router.mode = 'html5'
 
 export default router;
