@@ -6,7 +6,7 @@
     import  store from '../../store/store'
     export default {
         name: "LogoutComponent",
-        mounted(){
+        mounted: function(){
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             store.commit('logoutUser');

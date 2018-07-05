@@ -52892,7 +52892,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52903,6 +52903,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_store__ = __webpack_require__(5);
 //
 //
 //
@@ -52931,6 +52932,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "MyProfileComponent",
@@ -52957,12 +52959,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             }).then(function (response) {
-                console.log(response);
+                console.log('response');
                 // this.$router.push({ name: 'home' });
 
                 _this.name = response.data.name;
                 _this.email = response.data.email;
-            }).catch(function (error) {});
+            }).catch(function (error) {
+                console.log('error');
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                __WEBPACK_IMPORTED_MODULE_0__store_store__["a" /* default */].commit('logoutUser');
+                _this.$router.push({ name: 'login' });
+            });
         }
     }
 });

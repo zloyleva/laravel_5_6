@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import  store from '../store/store'
     export default {
         name: "MyProfileComponent",
         data(){
@@ -49,14 +50,18 @@
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).then(response => {
-                    console.log(response);
+                    console.log('response');
                     // this.$router.push({ name: 'home' });
 
                     this.name = response.data.name;
                     this.email = response.data.email;
 
                 }).catch(error => {
-
+                    console.log('error');
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    store.commit('logoutUser');
+                    this.$router.push({ name: 'login' });
                 });
             }
         }
