@@ -43,14 +43,15 @@
         methods:{
             getUserData: function () {
                 axios({
-                    method:'post',
+                    method:'get',
                     url: '/api/auth/me',
                     headers: {
                         'Authorization': 'Bearer ' + localStorage.getItem('token'),
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).then(response => {
-                    console.log('response');
+                    console.log(response);
+                    response = response.data;
                     // this.$router.push({ name: 'home' });
 
                     this.name = response.data.name;
