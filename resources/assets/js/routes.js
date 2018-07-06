@@ -8,6 +8,7 @@ import LoginComponent from './components/Auth/LoginComponent'
 import LogoutComponent from './components/Auth/LogoutComponent'
 import RegisterComponent from './components/Auth/RegisterComponent'
 import NotFoundComponent from './components/NotFoundComponent'
+import MyProfileComponent from './components/MyProfileComponent'
 
 const routes = [
     {
@@ -29,6 +30,11 @@ const routes = [
         path: '/register',
         name: 'register',
         component: RegisterComponent,
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: MyProfileComponent
     },
     {
         path: '/404',

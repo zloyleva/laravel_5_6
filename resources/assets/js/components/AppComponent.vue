@@ -30,6 +30,7 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <router-link class="nav-link dropdown-item" :to="{ name: 'profile' }">My profile</router-link>
                                 <router-link class="nav-link dropdown-item" :to="{ name: 'logout' }">Logout</router-link>
                             </div>
                         </li>

@@ -78,7 +78,13 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth()->user());
+        return response()->json([
+            'data' => [
+                'id' => auth()->user()->id,
+                'name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+            ]
+        ],200);
     }
 
     /**
@@ -112,11 +118,15 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => Auth()->user()
-        ], 200);
+        return response()->json(
+            [
+                'data' => [
+                    'access_token' => $token,
+                    'token_type' => 'bearer',
+                    'expires_in' => auth()->factory()->getTTL() * 60,
+                    'user' => Auth()->user()
+                ],
+                'code' => 200
+            ], 200);
     }
 }
