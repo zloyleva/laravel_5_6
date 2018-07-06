@@ -6,26 +6,15 @@ use Tests\TestCase;
 
 class GuestTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testHomePage()
+    public function testLoginForm()
     {
-        $response = $this->get('/');
-        $response->assertStatus(200);
+        $response = $this->json('POST', $this->urlAuth.'login');
+        $response->assertStatus(401);
     }
 
-    public function testLoginPage()
+    public function testRegisterForm()
     {
-        $response = $this->get('/login');
-        $response->assertStatus(200);
-    }
-
-    public function testRegisterPage()
-    {
-        $response = $this->get('/register');
-        $response->assertStatus(200);
+        $response = $this->json('POST', $this->urlAuth.'register');
+        $response->assertStatus(422);
     }
 }

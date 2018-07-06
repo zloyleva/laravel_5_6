@@ -62,7 +62,7 @@
                     email: this.email,
                     password: this.password
                 }).then(response => {
-                    // login user, store the token and redirect to dashboard
+                    response = response.data;
                     localStorage.setItem('token', response.data.access_token);
                     localStorage.setItem('user', response.data.user.name);
 

@@ -13,6 +13,8 @@ trait ApiEnv
     public $headers = null;
     public $token = null;
 
+    public $urlAuth = '/api/auth/';
+
     public function createEnvironment($role = 'admin')
     {
         $this->removeEnvironment();
