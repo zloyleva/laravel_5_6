@@ -10,16 +10,22 @@
         name: "MainChatComponenet",
         data(){
             return {
-                messages: [
-                    {text: "Some  text message", author: "Zloy Leva",},
-                    {text: "Next text message", author: "Oleh",},
-                ]
+                messages: []
             }
+        },
+        created(){
+            axios.get('/messages').then(responce => {
+                console.log(responce)
+                this.messages = responce.data;
+            });
         },
         methods:{
             addNewMessage(message){
                 console.log(message);
-                this.messages.push(message)
+                // this.messages.push(message);
+                axios.post('/messages/store', message).then(responce => {
+                    console.log(responce)
+                });
             }
         }
     }
