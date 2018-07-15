@@ -3,6 +3,7 @@ docker_webserver = lara_vue-webserver
 docker_mysql = lara_vue-mysql
 docker_image = backend_php-fpm
 docker_nodejs = lara_vue-nodejs
+docker_redis = lara_vue-redis
 
 help: #prints list of commands
 	@cat ./makefile | grep : | grep -v "grep"
@@ -105,6 +106,9 @@ connect_mysql: #connect to container bash
 
 connect_nodejs: #connect to container bash
 	@sudo docker exec -it $(docker_nodejs) bash
+
+connect_redis: #connect to container bash
+	@sudo docker exec -it $(docker_redis) bash
 
 version: #laravel version
 	@sudo docker exec -it $(docker_name) bash -c 'php artisan --version'
