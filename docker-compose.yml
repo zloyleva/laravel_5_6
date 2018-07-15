@@ -7,7 +7,9 @@ services:
         context: .
         dockerfile: ./docker/nodejs/Dockerfile
       volumes:
-       - .:/app
+       - .:/application
+      links:
+          - redis
       ports:
        - '4200:4200'
 
@@ -49,11 +51,10 @@ services:
     redis:
       image: redis
       container_name: lara_vue-redis
-#      build:
-#          context: .
-#          dockerfile: ./docker/redis/Dockerfile
       ports:
         - "6379:6379"
+      volumes:
+        - ./redis:/data
 
     php-fpm:
       build: 
@@ -64,7 +65,7 @@ services:
       ports:
         - "9090:9090"
       links:
-          - redis:redis
+          - nodejs:nodejs
       volumes:
         - .:/application
         - ./docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
