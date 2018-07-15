@@ -46,14 +46,25 @@ services:
       depends_on:
         - php-fpm
 
+    redis:
+      image: redis
+      container_name: lara_vue-redis
+#      build:
+#          context: .
+#          dockerfile: ./docker/redis/Dockerfile
+      ports:
+        - "6379:6379"
+
     php-fpm:
       build: 
         context: .
-        dockerfile: /docker/php-fpm/Dockerfile
+        dockerfile: ./docker/php-fpm/Dockerfile
       container_name: lara_vue-php-fpm
       working_dir: /application
       ports:
         - "9090:9090"
+      links:
+          - redis:redis
       volumes:
         - .:/application
         - ./docker/php-fpm/php-ini-overrides.ini:/usr/local/etc/php/conf.d/99-overrides.ini
