@@ -7,11 +7,20 @@
 </template>
 
 <script>
+    const allowedOrigins = "*:* ";
+
+    const socket = io('http://localhost:3000',{origins:allowedOrigins});
     export default {
         name: "ChatLog",
         props: [
             'messages'
-        ]
+        ],
+        created(){
+            socket.on('general-chanel:UserSendMessage', (data) => {
+                console.log(data);
+                this.messages.push(data);
+            })
+        }
     }
 </script>
 

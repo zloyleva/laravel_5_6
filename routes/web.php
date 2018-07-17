@@ -12,15 +12,16 @@
 */
 
 Route::get('/', function () {
-        return view('welcome');
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/chat', 'MessagesController@index')->name('chat');
 
 Route::group(['middleware' => 'auth'], function(){
+    Route::get('/chat', 'MessagesController@index')->name('chat');
+
     Route::get('/messages', 'MessagesController@list')->name('messages');
     Route::post('/messages/store', 'MessagesController@store')->name('messages.store');
 });

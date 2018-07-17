@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class MessagesController extends Controller
 {
@@ -17,6 +18,16 @@ class MessagesController extends Controller
             'text' => $request->get('text'),
             'chat_id' => 1
         ]);
+
+        $data = [
+            'event' => 'UserSendMessage',
+            'data' => [
+                'text' => $request->get('text'),
+                'chat_id' => 1,
+                'user' => $user
+            ]
+        ];
+        Redis::publish('general-chanel', json_encode($data));
 
         return $message;
     }
